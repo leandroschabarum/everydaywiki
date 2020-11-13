@@ -1,0 +1,44 @@
+
+GIT version control structure:
+
+|   Working DIR   |   Staging Area   |   Local Repository   |   Remote Repository   |
+|        <--------|------------------|----------------------|-----------x           |
+|        x--------|-------->         |                      |                       |
+|                 |        x---------|----------->          |                       |
+|                 |                  |           x----------|----------->           |
+
+To clean changes to a file from the current working directory:
+	git checkout <filename>
+
+To fix committed changes to a file that HAVEN'T been pushed to a remote repository:
+	lists all commit logs with additional file info ---> git log --stat
+
+	changes last committed message (alters log hash id) ---> git commit --amend -m "<new_message>"
+
+	overrides last committed entry with current staged files ---> git commit --amend
+
+To fix committed changes to a file that HAVE been pushed to a remote repository:
+	creates a duplicate log entry that overrides given committed id ---> git revert <log_hash_id>
+
+To copy a commit entry from a branch to the current one:
+	git cherry-pick <log_hash_id>
+
+To remove a commit entry:
+	backup changes to stanging area ---> git reset --soft <log_hash_id>
+
+	backup changes to working directory (DEFAULT) ---> git reset --mixed <log_hash_id>
+
+	backup only untracked files to working directory ---> git reset --hard <log_hash_id>
+
+To remove all untracked files and directories:
+	git clean -df
+
+To recover deleted commit entries:
+	lists all command logs ---> git reflog
+
+	returns to selected log hash id (detached HEAD state) ---> git checkout <log_hash_id>
+
+	creates a branch on the current directory with current state ---> git branch <branch_name>
+
+To see the difference between two committed log hashed ids:
+	git diff <log_hash_id_old> <log_hash_id_new>

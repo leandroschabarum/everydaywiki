@@ -1,0 +1,90 @@
+
+To read about, download and install GIT, access url:
+	git-scm.com
+
+To get information about commands:
+	git help <command>
+	git <command> --help
+
+To configure and check up info:
+	returns current version ---> git --version
+
+	lists configured fields ---> git config --list
+
+	sets a field to a specified value ---> git config --global <field> "<value>"
+
+To start GIT version control system on a project folder:
+	access target ---> (Windows):\> cd <path>\<foldername>
+                           (Linux) [~]# cd <path>/<foldername>
+
+	creates .git directory ---> git init
+
+	creates .gitignore file ---> (Windows):\> type nul > .gitignore
+                                     (Linux) [~]# touch .gitignore
+
+	lists untracked files ---> git status
+
+GIT version control structure:
+
+|   Working DIR   |   Staging Area   |   Local Repository   |   Remote Repository   |
+|        <--------|------------------|----------------------|-----------x           |
+|        x--------|-------->         |                      |                       |
+|                 |        x---------|----------->          |                       |
+|                 |                  |           x----------|----------->           |
+
+To copy a remote/local repository:
+	clone a remote repository ---> git clone <path_origin> <path_target>
+
+	lists info about repositories ---> git remote -v
+
+	lists info about branches ---> git branch -a
+
+To add and remove files from the staging area:
+	adds specified file ---> git add <filename>
+
+	adds all untracked files ---> git add -A
+
+	removes specified file ---> git reset <filename>
+
+	removes all files ---> git reset
+
+To commit changes to the local repository:
+	commits all staged files ---> git commit -m "<message>"
+
+	lists all commit logs ---> git log
+                                   git reflog
+
+To submit changes to the remote repository:
+	list info about changes done ---> git diff
+
+	gets changes from remote repository ---> git pull <repository> <branch>
+
+	sends changes to the remote repository ---> git push <repository> <branch>
+
+Basic flow of commands:
+	git status > git add > git commit > git log > git pull > git push
+
+To create branches inside a repository:
+	lists all branches ---> git branch
+
+	creates specified branch ---> git branch <branch_name>
+
+	activates specified branch ---> git checkout <branch>
+
+To add (merge) branches together:
+	lists all merged branches ---> git branch --merged
+
+	merges specified branch with current active one ---> git merge <branch>
+
+To remove branches:
+	removes branch from local repository ---> git branch -d <branch>
+
+	removes branch from remote repository ---> git push <repository> --delete <branch>
+
+Basic flow of commands when dealing with branches:
+	git branch > git checkout <branch> > git status > git add > git commit > git log > git pull > git push
+
+Basic flow of commands when merging branches:
+	git branch > git checkout <branch> > git merge > git branch --merged (> git branch -d > git push --delete)
+
+	*(> git branch -d > git push --delete) is used in cases when working on a temporary branch that can be deleted afterwards, otherwise ignore
