@@ -1,0 +1,52 @@
+
+To create a project folder and its virtual environment:
+	create your python project folder ---> mkdir <path>\<foldername>
+
+	use the standart library package venv to create the enviroment ---> python -m venv <path>\<foldername>\*venv
+
+*The folder of your environment inside the python project can be named whatever your preferences are,
+but it is a "good practice" to follow some kind of pattern, so that you know what it is about,
+most commonly it is named according to the package used to create it, such as venv, virtualenv...
+
+To activate the virtual environment inside the project folder:
+	execute the enviroment ---> (Windows):\> <path>\<foldername>\venv\Scripts\activate.bat
+                                    (Linux) [~]# <path>/<foldername>/venv/bin\activate
+
+Check up commands:
+	current interpreter version ---> python --version
+
+	where the interpreter is being called from ---> (Windows):\> where python
+                                                        (Linux) [~]# which python
+
+	current pip manager version ---> pip --version
+
+	if needed, upgrade pip ---> python -m pip install --upgrade pip
+
+	returns currently installed packages ---> pip list
+
+To install packages into the virtual environment:
+	from a text file ---> pip install -r <requirements_filename>.txt
+
+	individually ---> pip install <package_name>
+
+To create an empty python file:
+	(Windows):\> type nul > <path>\<filename>.py
+        (Linux) [~]# touch <path>/<filename>.py
+
+To compile a python file from within the current virtual environment:
+	python <filename>.py
+
+To generate the current virtual environment installed packages file:
+	outputs the right format of your dependency packages to a *text file ---> pip freeze > <output_path>\<filename>.txt
+
+*It can be used later to recreate the environment with pip install command from a file.
+
+To deactivate the current virtual environment:
+	deactivate
+
+To delete any project folder or virtual environment:
+	only the virtual environment ---> (Windows):\> rmdir <target_path>\<foldername>\venv /s
+                                          (Linux) [~]# rm -rf <target_path>/<foldername>/venv
+
+	whole project ---> (Windows):\> rmdir <target_path>\<foldername> /s
+                           (Linux) [~]# rm -rf <target_path>/<foldername>
