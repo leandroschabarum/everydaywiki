@@ -1,0 +1,80 @@
+
+After having access to your Virtual Machine (VM), usually as root,
+it is advised to interact through a user with lower privileges with
+your applications. To create such a user and give it 'sudo' privileges,
+use the following commands.
+
+	[~]# sudo su
+	[~]# hostnamectl set-hostname <hostname>
+	[~]# vi /etc/hosts
+		i ---> <ipaddress> TAB <hostname>
+		ESC      ---> :wq
+
+	[~]# adduser <new_user>
+		fill in ---> press ENTER
+
+	[~]# adduser <username> <group>
+		group ---> sudo
+
+Lists all available groups and users:
+
+	[~]# cat /etc/group
+	[~]# cat /etc/passwd
+
+Lists log activities:
+
+	[~]# cat /var/log/auth.log
+
+If UFW is not installed, you are advised to do so because it greatly
+simplifies dealing with firewall in linux.
+
+	[~]# apt-get install ufw
+	[~]# ufw default allow outgoing
+	[~]# ufw default deny incoming
+	[~]# ufw allow ssh
+	[~]# ufw enable
+	[~]# ufw status
+
+*It is important NOT TO FORGET to explicitly allow connections for SSH
+access, otherwise you will be locked out from your VM and will need
+assistance from your hosting service provider getting it back!
+
+Some basic update and upgrade procedures. Note that the 'do-release-upgrade'
+can be done when a new version of the operational system is available.
+
+	[~]# apt-get update
+	[~]# apt-get upgrade -y
+	[~]# apt-get autoremove
+
+	[~]# ufw allow 1022/tcp comment 'Temporary tcp port 1022 for system upgrade over ssh connection.'
+	[~]# do-release-upgrade
+	[~]# uname -a
+	[~]# lsb_release -a
+	[~]# dmesg
+	[~]# ufw delete allow 1022/tcp
+	[~]# netstat -tulpn
+
+Following up, it is a good idea to install GIT for your software deployment,
+or even development if it so suits you.
+
+	[~]# add-apt-repository ppa:git-core/ppa
+	[~]# apt-get update
+	[~]# apt-get install git
+
+Next, you can install recently releases of Python through the 'deadsnakes'
+repository.
+
+	[~]# add-apt-repository ppa:deadsnakes/ppa
+	[~]# apt-get update
+	[~]# apt-get install python3.8
+	[~]# apt-get install python3.8-distutils
+	[~]# apt-get install python3.8-venv
+	[~]# apt-get install python3.8-dev
+	[~]# python3.8 -m pip install --upgrade pip setuptools wheel
+
+	[~]# python3.8 --version
+
+Usually the system would already have prompted you to reboot, otherwise
+it is a good idea to do so now.
+
+	[~]# reboot
